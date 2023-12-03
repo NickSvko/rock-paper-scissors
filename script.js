@@ -9,6 +9,10 @@ function playRound(playerSelection, computerSelection) {
     let playerChoice = capitalizeWord(playerSelection);
     let playerResult = "Lose";
 
+    if(computerSelection === playerChoice) {
+        return "It's a TIE! Try again.";
+    }
+
     switch (computerSelection) {
         case "Rock":
             if(playerChoice === "Paper") {
