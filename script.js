@@ -1,14 +1,39 @@
 function getComputerChoice() {
-    choices = ["Rock", "Paper", "Scissors"];
-    choiceIndex = Math.floor(Math.random() * choices.length);
+    let choices = ["Rock", "Paper", "Scissors"];
+    let choiceIndex = Math.floor(Math.random() * choices.length);
     return choices[choiceIndex];
 }
 
 
-function roundResult(state, playerSelection, computerSelection) {
+function playRound(playerSelection, computerSelection) {
+    let playerChoice = capitalizeWord(playerSelection);
+    let playerResult = "Lose";
+
+    switch (computerSelection) {
+        case "Rock":
+            if(playerChoice === "Paper") {
+                playerResult = "Win";
+            }
+            break;
+        case "Paper":
+            if(playerChoice === "Scissors") {
+                playerResult = "Win";
+            }
+            break;
+        case "Scissors":
+            if(playerChoice == "Rock") {
+                playerResult = "Win";
+            }
+    }
+
+    return roundResult(playerResult, playerChoice, computerSelection);
+}
+
+
+function roundResult(playerResult, playerSelection, computerSelection) {
     let winner, looser;
 
-    if(state == "Win") {
+    if( playerResult === "Win") {
         winner = playerSelection;
         looser = computerSelection;
     }
@@ -16,13 +41,13 @@ function roundResult(state, playerSelection, computerSelection) {
         winner = computerSelection;
         looser = playerSelection;
     }
-    return `You ${state}! ${winner} beats ${looser}`;
+    return `You ${playerResult}! ${winner} beats ${looser}`;
 }
 
 
 function capitalizeWord(word) {
-    firstChar = word.charAt(0);
+    let firstChar = word.charAt(0);
     firstChar = firstChar.toUpperCase();
-    restOfTheWord = word.slice(1).toLowerCase();
+    let restOfTheWord = word.slice(1).toLowerCase();
     return firstChar + restOfTheWord;
 }
