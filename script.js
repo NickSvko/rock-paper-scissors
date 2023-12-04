@@ -7,30 +7,29 @@ function getComputerChoice() {
 
 function playRound(playerSelection, computerSelection) {
     let playerChoice = capitalizeWord(playerSelection);
-    let playerResult = "Lose";
+    let winner = "computer";  // Default value
 
     if(computerSelection === playerChoice) {
-        return "It's a TIE! Try again.";
+        return "tie";
     }
 
     switch (computerSelection) {
         case "Rock":
             if(playerChoice === "Paper") {
-                playerResult = "Win";
+                winner = "player";
             }
             break;
         case "Paper":
             if(playerChoice === "Scissors") {
-                playerResult = "Win";
+                winner = "player";
             }
             break;
         case "Scissors":
             if(playerChoice == "Rock") {
-                playerResult = "Win";
+                winner = "player";
             }
     }
-
-    return roundResult(playerResult, playerChoice, computerSelection);
+    return winner;
 }
 
 
