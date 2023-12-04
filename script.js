@@ -7,7 +7,7 @@ function getComputerChoice() {
 
 function playRound(playerSelection, computerSelection) {
     let playerChoice = capitalizeWord(playerSelection);
-    let winner = "computer";  // Default value
+    let winner = "Computer";  // Default value
 
     if(computerSelection === playerChoice) {
         return "tie";
@@ -16,35 +16,37 @@ function playRound(playerSelection, computerSelection) {
     switch (computerSelection) {
         case "Rock":
             if(playerChoice === "Paper") {
-                winner = "player";
+                winner = "Player";
             }
             break;
         case "Paper":
             if(playerChoice === "Scissors") {
-                winner = "player";
+                winner = "Player";
             }
             break;
         case "Scissors":
             if(playerChoice == "Rock") {
-                winner = "player";
+                winner = "Player";
             }
     }
     return winner;
 }
 
 
-function roundResult(playerResult, playerSelection, computerSelection) {
-    let winner, looser;
-
-    if( playerResult === "Win") {
-        winner = playerSelection;
-        looser = computerSelection;
+function resultMassage(roundResult, playerSelection, computerSelection) {
+    let winnerSignal, loserSignal;
+    if(roundResult === "tie") {
+        return "It's a TIE!"
+    }
+    if(roundResult === "Player") {
+        winnerSignal = playerSelection;
+        loserSignal = computerSelection;
     }
     else {
-        winner = computerSelection;
-        looser = playerSelection;
+        winnerSignal = computerSelection;
+        loserSignal = playerSelection;
     }
-    return `You ${playerResult}! ${winner} beats ${looser}`;
+    return `${roundResult} Wins! ${winnerSignal} beats ${loserSignal}`;
 }
 
 
